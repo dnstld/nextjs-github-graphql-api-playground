@@ -6,12 +6,17 @@ import {
   type GetRepoQuery,
 } from "@/gql/graphql";
 
-export default async function Details({ params }: { params: { id: string } }) {
-  const id = decodeURIComponent(params.id);
+export default async function Details({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const decodedId = decodeURIComponent(id);
 
   const { data, error } = await query<GetRepoQuery, GetRepoQueryVariables>({
     query: GetRepoDocument,
-    variables: { id },
+    variables: { id: decodedId },
   });
 
   if (error) {
