@@ -7,9 +7,11 @@ import {
 import Link from "next/link";
 
 export default async function Details({ params }: { params: { id: string } }) {
+  const id = decodeURIComponent(params.id);
+
   const { data, error } = await query<GetRepoQuery, GetRepoQueryVariables>({
     query: GetRepoDocument,
-    variables: { id: params.id },
+    variables: { id },
   });
 
   if (error) {
