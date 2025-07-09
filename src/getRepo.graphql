@@ -1,0 +1,19 @@
+query GetRepo($id: ID!) {
+  node(id: $id) {
+    ... on Repository {
+      id
+      name
+      description
+      url
+      owner {
+        login
+      }
+      stargazerCount
+      forkCount
+      primaryLanguage {
+        name
+        color
+      }
+    }
+  }
+}
