@@ -15,11 +15,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 type Documents = {
     "query GetRepo($id: ID!) {\n  node(id: $id) {\n    ... on Repository {\n      id\n      name\n      description\n      url\n      owner {\n        login\n      }\n      stargazerCount\n      forkCount\n      primaryLanguage {\n        name\n        color\n      }\n    }\n  }\n}": typeof types.GetRepoDocument,
-    "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100) {\n      nodes {\n        id\n        name\n      }\n    }\n  }\n}": typeof types.GetReposDocument,
+    "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        id\n        name\n        updatedAt\n      }\n    }\n  }\n}": typeof types.GetReposDocument,
 };
 const documents: Documents = {
     "query GetRepo($id: ID!) {\n  node(id: $id) {\n    ... on Repository {\n      id\n      name\n      description\n      url\n      owner {\n        login\n      }\n      stargazerCount\n      forkCount\n      primaryLanguage {\n        name\n        color\n      }\n    }\n  }\n}": types.GetRepoDocument,
-    "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100) {\n      nodes {\n        id\n        name\n      }\n    }\n  }\n}": types.GetReposDocument,
+    "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        id\n        name\n        updatedAt\n      }\n    }\n  }\n}": types.GetReposDocument,
 };
 
 /**
@@ -43,7 +43,7 @@ export function graphql(source: "query GetRepo($id: ID!) {\n  node(id: $id) {\n 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100) {\n      nodes {\n        id\n        name\n      }\n    }\n  }\n}"): (typeof documents)["query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100) {\n      nodes {\n        id\n        name\n      }\n    }\n  }\n}"];
+export function graphql(source: "query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        id\n        name\n        updatedAt\n      }\n    }\n  }\n}"): (typeof documents)["query GetRepos($login: String!) {\n  user(login: $login) {\n    repositories(first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {\n      nodes {\n        id\n        name\n        updatedAt\n      }\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
