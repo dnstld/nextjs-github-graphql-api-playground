@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main className="container mx-auto max-w-md p-4 text-center space-y-8">
       <header className="mb-6 text-center">
-        <h1 className="text-xl font-semibold">JUCR.de Web Builder Challenge</h1>
+        <h1 className="text-xl font-semibold">Web Builder</h1>
         <p className="text-sm text-gray-400">
           Next.js 15 • TypeScript • Apollo GraphQL
         </p>

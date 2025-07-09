@@ -1,6 +1,6 @@
-# JUCR.de Web Builder Challenge (Next.js 15 + TypeScript + Apollo GraphQL)
+# Next.js 15 + TypeScript + Apollo GraphQL
 
-Create a Next.js 15 application that uses the GitHub GraphQL API to display a repository list and a repository detail page.
+Next.js 15 application that uses the GitHub GraphQL API
 
 ## How to test
 
