@@ -14,6 +14,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
       uri: "https://api.github.com/graphql",
       headers: {
         Authorization: GITHUB_TOKEN ? `Bearer ${GITHUB_TOKEN}` : '',
+        'X-GitHub-Api-Version': '2022-11-28'
       },
       fetchOptions: {
         cache: "no-store",
