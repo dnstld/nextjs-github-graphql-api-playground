@@ -24,6 +24,12 @@ export default async function Details({ params }: { params: { id: string } }) {
     return <div className="text-gray-500">Repository not found.</div>;
   }
 
+  const created = new Date(repo.createdAt).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <div className="container mx-auto max-w-md p-4 text-center space-y-8">
       <h1 className="font-bold text-2xl">{repo.name}</h1>
@@ -32,6 +38,10 @@ export default async function Details({ params }: { params: { id: string } }) {
         <div className="flex justify-between">
           <dt className="text-gray-500">Owner</dt>
           <dd>{repo.owner.login}</dd>
+        </div>
+        <div className="flex justify-between">
+          <dt className="text-gray-500">Created at:</dt>
+          <dd>{created}</dd>
         </div>
         <div className="flex justify-between">
           <dt className="text-gray-500">Stars</dt>
