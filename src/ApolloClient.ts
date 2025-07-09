@@ -5,7 +5,7 @@ import {
   InMemoryCache,
 } from "@apollo/client-integration-nextjs";
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({

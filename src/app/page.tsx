@@ -6,10 +6,12 @@ import {
 } from "@/gql/graphql";
 import Link from "next/link";
 
+const GITHUB_USER = process.env.NEXT_PUBLIC_GITHUB_USER || "";
+
 export default async function Home() {
   const { data, error } = await query<GetReposQuery, GetReposQueryVariables>({
     query: GetReposDocument,
-    variables: { login: "dnstld" },
+    variables: { login: GITHUB_USER },
   });
 
   if (error) {
