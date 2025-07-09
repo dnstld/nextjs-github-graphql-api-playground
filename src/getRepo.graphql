@@ -4,17 +4,17 @@ query GetRepo($id: ID!) {
       id
       name
       description
+      createdAt
       url
+      stargazerCount
+      forkCount
       owner {
         login
       }
-      stargazerCount
-      forkCount
       primaryLanguage {
         name
         color
       }
-      createdAt
     }
   }
 }
