@@ -1,6 +1,6 @@
 query GetRepos($login: String!) {
   user(login: $login) {
-    repositories() {
+    repositories(first: 100) {
       nodes {
         id
         name
