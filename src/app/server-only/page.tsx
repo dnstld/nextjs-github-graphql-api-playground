@@ -10,14 +10,10 @@ import Link from "next/link";
 const GITHUB_USER = process.env.NEXT_PUBLIC_GITHUB_USER || "";
 
 export default async function Home() {
-  const { data, error } = await query<GetReposQuery, GetReposQueryVariables>({
+  const { data } = await query<GetReposQuery, GetReposQueryVariables>({
     query: GetReposDocument,
     variables: { login: GITHUB_USER },
   });
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   const repos = (data?.user?.repositories?.nodes ?? []).filter(
     (repo): repo is NonNullable<typeof repo> => repo !== null
