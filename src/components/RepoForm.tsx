@@ -50,9 +50,12 @@ function renderField(key: string, value: unknown) {
 
   if (key === "__typename") {
     return (
-      <h1 key={key} className="font-bold text-xl mt-8">
-        {String(value)} props
-      </h1>
+      <h2
+        key={key}
+        className="border-b-1 border-b-gray-800 text-gray-600 pb-2 mb-2 uppercase text-sm"
+      >
+        {String(value)} props:
+      </h2>
     );
   }
 
@@ -61,7 +64,7 @@ function renderField(key: string, value: unknown) {
       return (
         <div key={key}>
           <label htmlFor={key} className="block text-sm mb-1">
-            {key}:
+            {key}
           </label>
           <input type="color" value={value} readOnly name={key} />
         </div>
@@ -72,7 +75,7 @@ function renderField(key: string, value: unknown) {
       return (
         <div key={key}>
           <label htmlFor={key} className="block text-sm mb-1">
-            {key}:
+            {key}
           </label>
           <input
             type="date"
@@ -88,7 +91,7 @@ function renderField(key: string, value: unknown) {
     return (
       <div key={key}>
         <label htmlFor={key} className="block text-sm mb-1">
-          {key}:
+          {key}
         </label>
         <input
           type="text"
@@ -105,7 +108,7 @@ function renderField(key: string, value: unknown) {
     return (
       <div key={key}>
         <label htmlFor={key} className="block text-sm mb-1">
-          {key}:
+          {key}
         </label>
 
         <input

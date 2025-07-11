@@ -1,56 +1,27 @@
-import { query } from "@/ApolloClient";
-import {
-  GetReposDocument,
-  type GetReposQueryVariables,
-  type GetReposQuery,
-} from "@/gql/graphql";
 import Link from "next/link";
 
-const GITHUB_USER = process.env.NEXT_PUBLIC_GITHUB_USER || "";
-
 export default async function Home() {
-  const { data, error } = await query<GetReposQuery, GetReposQueryVariables>({
-    query: GetReposDocument,
-    variables: { login: GITHUB_USER },
-  });
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const repos = (data?.user?.repositories?.nodes ?? []).filter(
-    (repo): repo is NonNullable<typeof repo> => repo !== null
-  );
-
   return (
-    <main className="container mx-auto max-w-md p-4 text-center space-y-8">
-      <header className="mb-6 text-center">
+    <main className="container mx-auto max-w-md p-4 space-y-8">
+      <header className="mb-6">
         <h1 className="text-xl font-semibold">Web Builder</h1>
         <p className="text-sm text-gray-400">
           Next.js 15 • TypeScript • Apollo GraphQL
         </p>
       </header>
 
-      {repos.length ? (
+      <nav>
         <ul className="space-y-2">
-          {repos.map((repo) => (
-            <li key={repo.id}>
-              <Link
-                href={`/${repo.id}`}
-                className="flex items-center justify-between rounded-lg border border-gray-800 px-4 py-3 text-sm transition-colors hover:bg-gray-800"
-                aria-label={`Open details for ${repo.name}`}
-              >
-                <span>{repo.name}</span>
+          <li>
+            <Link href={"/server-only"}>
+              <span className="flex items-center justify-between gap-2 rounded-lg border border-gray-800 px-4 py-2 text-sm transition-colors hover:bg-gray-800">
+                Server Only
                 <span aria-hidden="true">→</span>
-              </Link>
-            </li>
-          ))}
+              </span>
+            </Link>
+          </li>
         </ul>
-      ) : (
-        <div className="text-center text-sm text-gray-400">
-          No repositories found.
-        </div>
-      )}
+      </nav>
     </main>
   );
 }

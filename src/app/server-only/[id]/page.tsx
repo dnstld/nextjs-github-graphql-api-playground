@@ -1,4 +1,5 @@
 import { query } from "@/ApolloClient";
+import GoBackButton from "@/components/GoBackButton";
 import RepoForm from "@/components/RepoForm";
 import {
   GetRepoDocument,
@@ -30,12 +31,17 @@ export default async function Details({
   }
 
   return (
-    <div className="container mx-auto max-w-md p-4 text-center space-y-8">
-      <h1 className="font-bold text-2xl border-b-2 border-gray-800">
-        {repo.name}
-      </h1>
+    <main className="container mx-auto max-w-md p-4 space-y-8">
+      <header className="flex justify-between items-center mb-6">
+        <div>
+          <h1 className="text-xl font-semibold">{repo.name}</h1>
+          <p className="text-sm text-gray-400">Repository</p>
+        </div>
+
+        <GoBackButton />
+      </header>
 
       <RepoForm repo={repo} />
-    </div>
+    </main>
   );
 }
