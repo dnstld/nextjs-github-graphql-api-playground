@@ -6,8 +6,11 @@ const config: CodegenConfig = {
   schema: "./schema.graphql",
   documents: ['src/**/*.graphql','src/**/*.tsx'],
   generates: {
-    "src/gql/": {
+    "src/gql/__generated__/": {
       preset: "client",
+      config: {
+        useTypeImports: true,
+      },
       plugins: []
     }
   }

@@ -5,7 +5,7 @@ import {
   GetRepoDocument,
   type GetRepoQueryVariables,
   type GetRepoQuery,
-} from "@/gql/graphql";
+} from "@/gql/__generated__/graphql";
 
 export default async function Details({
   params,

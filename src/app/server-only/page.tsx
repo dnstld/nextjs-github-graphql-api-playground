@@ -4,7 +4,7 @@ import {
   GetReposDocument,
   type GetReposQueryVariables,
   type GetReposQuery,
-} from "@/gql/graphql";
+} from "@/gql/__generated__/graphql";
 import Link from "next/link";
 
 const GITHUB_USER = process.env.NEXT_PUBLIC_GITHUB_USER || "";
