@@ -1,10 +1,10 @@
 # Next.js 15 + TypeScript + Apollo GraphQL
 
-Next.js 15 application that uses the GitHub GraphQL API
+- [GitHub GraphQL API](https://docs.github.com/en/graphql)
+- [GitHub GraphQL Explorer](https://docs.github.com/en/graphql/overview/explorer)
+- [@apollo/client-integration-nextjs](https://www.apollographql.com/blog/apollo-client-integration-nextjs-officially-released)
 
-## How to test
-
-Download the public GitHub GraphQL schema with Apollo Rover:
+## Public schema
 
 ```bash
 export GITHUB_TOKEN=your_github_token
@@ -29,14 +29,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Featured commits
-
-- [Setup GraphQl Codegen](https://github.com/dnstld/web-builder-challenge/commit/7bba202c1b868f7358b5b5e1ce3b1e4f2c3d19c5)
-  - Set up [GraphQL Code Generator](https://the-guild.dev/graphql/codegen#graphql-codegen) as per the docs
-- [Integrate apollo client](https://github.com/dnstld/web-builder-challenge/commit/58e82b237c7632c08c686a419bf3fb31f6a6739a)
-  - Set up [@apollo/client-integration-nextjs](https://www.apollographql.com/blog/apollo-client-integration-nextjs-officially-released) as per the docs
-  - Display list of repositories
-- [Create dynamic route (repo details screen)](https://github.com/dnstld/web-builder-challenge/commit/77be3391212a5b0b3f6545b32565ef4265f63218)
-- [Create form and dynamic fields](https://github.com/dnstld/web-builder-challenge/commit/326ef31f925f75daeb13024b318846bfc57f70b9)
-  - create `renderField` function to manage the form UI and fields types
