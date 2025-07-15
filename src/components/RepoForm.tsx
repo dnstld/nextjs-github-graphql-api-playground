@@ -2,16 +2,20 @@
 
 import { isDateString } from "@/app/utils/isDateString";
 import { isHexString } from "@/app/utils/isHexString";
-import { GetRepoQuery } from "@/gql/graphql";
+import { GetRepoQuery } from "@/gql/__generated__/graphql";
 import { Fragment } from "react";
 
 const ALLOWED_TYPES = ["string", "number", "object"];
 
-type Props = {
-  repo: NonNullable<GetRepoQuery["node"]>;
-};
+type Repo = Extract<GetRepoQuery["node"], { __typename?: "Repository" }>;
 
-export default function RepoForm({ repo }: Props) {
+export default function RepoForm({
+  repo,
+  dictionary,
+}: {
+  repo: Repo;
+  dictionary: Partial<Record<keyof Repo, string>>;
+}) {
   return (
     <form
       className="flex flex-col gap-4 text-left"
@@ -24,7 +28,7 @@ export default function RepoForm({ repo }: Props) {
       }}
     >
       {Object.entries(repo).map(([key, value]) => {
-        return renderField(key, value);
+        return renderField(key, value, dictionary);
       })}
 
       <button
@@ -37,7 +41,11 @@ export default function RepoForm({ repo }: Props) {
   );
 }
 
-function renderField(key: string, value: unknown) {
+function renderField(
+  key: string,
+  value: unknown,
+  dictionary: Partial<Record<string, string>> = {}
+) {
   if (!value) return false;
 
   // Skip unsupported types
@@ -59,12 +67,14 @@ function renderField(key: string, value: unknown) {
     );
   }
 
+  const label = dictionary[key as keyof typeof dictionary] ?? key;
+
   if (typeof value === "string") {
     if (isHexString(value)) {
       return (
         <div key={key}>
           <label htmlFor={key} className="block text-sm mb-1">
-            {key}
+            {label}
           </label>
           <input type="color" value={value} readOnly name={key} />
         </div>
@@ -75,7 +85,7 @@ function renderField(key: string, value: unknown) {
       return (
         <div key={key}>
           <label htmlFor={key} className="block text-sm mb-1">
-            {key}
+            {label}
           </label>
           <input
             type="date"
@@ -91,7 +101,7 @@ function renderField(key: string, value: unknown) {
     return (
       <div key={key}>
         <label htmlFor={key} className="block text-sm mb-1">
-          {key}
+          {label}
         </label>
         <input
           type="text"
@@ -108,7 +118,7 @@ function renderField(key: string, value: unknown) {
     return (
       <div key={key}>
         <label htmlFor={key} className="block text-sm mb-1">
-          {key}
+          {label}
         </label>
 
         <input

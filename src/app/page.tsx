@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function Home() {
+export default async function HomePage() {
   return (
     <main className="container mx-auto max-w-md p-4 space-y-8">
       <header className="mb-6">
@@ -16,6 +16,14 @@ export default async function Home() {
             <Link href={"/server-only"}>
               <span className="flex items-center justify-between gap-2 rounded-lg border border-gray-800 px-4 py-2 text-sm transition-colors hover:bg-gray-800">
                 Server Only
+                <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link href={"/client-streaming"}>
+              <span className="flex items-center justify-between gap-2 rounded-lg border border-gray-800 px-4 py-2 text-sm transition-colors hover:bg-gray-800">
+                Client Streaming
                 <span aria-hidden="true">→</span>
               </span>
             </Link>

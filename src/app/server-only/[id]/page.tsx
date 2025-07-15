@@ -7,7 +7,20 @@ import {
   type GetRepoQuery,
 } from "@/gql/__generated__/graphql";
 
-export default async function Details({
+type Repo = Extract<GetRepoQuery["node"], { __typename?: "Repository" }>;
+
+const dictionary: Partial<Record<keyof Repo, string>> = {
+  name: "First Name",
+  description: "Description",
+  createdAt: "Created At",
+  url: "URL",
+  stargazerCount: "Stars",
+  forkCount: "Forks",
+  owner: "Owner",
+  primaryLanguage: "Primary Language",
+};
+
+export default async function DetailsPage({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -41,7 +54,7 @@ export default async function Details({
         <GoBackButton />
       </header>
 
-      <RepoForm repo={repo} />
+      <RepoForm repo={repo} dictionary={dictionary} />
     </main>
   );
 }

@@ -9,15 +9,17 @@ import Link from "next/link";
 
 const GITHUB_USER = process.env.NEXT_PUBLIC_GITHUB_USER || "";
 
-export default async function Home() {
+export default async function ServerOnlyPage() {
   const { data } = await query<GetReposQuery, GetReposQueryVariables>({
     query: GetReposDocument,
     variables: { login: GITHUB_USER },
   });
 
   const repos = (data?.user?.repositories?.nodes ?? []).filter(
-    (repo): repo is NonNullable<typeof repo> => repo !== null
+    (repo) => repo !== null
   );
+
+  // const repos = data?.user?.repositories?.nodes ?? [];
 
   return (
     <main className="container mx-auto max-w-md p-4 space-y-8">
